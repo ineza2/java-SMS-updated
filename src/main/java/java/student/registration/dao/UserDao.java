@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.student.registration.model.User;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
 	private static final String INSERT_USERS_SQL = "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?);";
@@ -16,9 +18,9 @@ public class UserDao {
     private static final String SELECT_ALL_USERS = "SELECT * FROM users;";
 
     // database connection details
-    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/student";
+    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/java";
     private static final String JDBC_USERNAME = "postgres";
-    private static final String JDBC_PASSWORD = "";
+    private static final String JDBC_PASSWORD = "12345";
 
     public void insertUser(User user) throws SQLException {
         try (Connection connection = getConnection();

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.student.registration.dao.StudentDao;
 import java.student.registration.model.Student;
+import java.util.List;
 
 /**
  * Servlet implementation class ListStudentsServlet

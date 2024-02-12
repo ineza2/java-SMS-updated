@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>Oops! u got not permission to access this page</h1>
 </body>
 </html>

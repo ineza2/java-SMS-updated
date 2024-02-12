@@ -1,11 +1,15 @@
 package java.student.registration.dao;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.student.registration.model.Student;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDao {
 	public int registerStudent(Student student) throws ClassNotFoundException {
@@ -44,7 +48,7 @@ public class StudentDao {
     
     public Student getStudentByCode(int studentCode) {
         Student student = null;
-        String SELECT_STUDENT_BY_CODE = "SELECT * FROM student WHERE code = ?;";
+        String SELECT_STUDENT_BY_CODE = "SELECT * FROM stud WHERE code = ?;";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_STUDENT_BY_CODE)) {
@@ -81,7 +85,7 @@ public class StudentDao {
         List<Student> students = new ArrayList<>();
 
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM student");
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM stud");
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
@@ -115,13 +119,13 @@ public class StudentDao {
    
 
     public void updateStudent(Student student) {
-        String UPDATE_STUDENT_SQL = "UPDATE student SET name=?, age=?, school=?, dob=?, email=?, mobile=? WHERE code=?;";
+        String UPDATE_STUDENT_SQL = "UPDATE stud SET name=?, age=?, school=?, dob=?, email=?, mobile=? WHERE code=?;";
 
         try {
             Class.forName("org.postgresql.Driver");
-            String jdbcUrl = "jdbc:postgresql://localhost:5432/student";
+            String jdbcUrl = "jdbc:postgresql://localhost:5432/java";
             String username = "postgres";
-            String password = "";
+            String password = "12345";
 
             try (Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
                  PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_STUDENT_SQL)) {
@@ -142,7 +146,7 @@ public class StudentDao {
     }
     public void deleteStudent(int studentId) {
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM student WHERE code = ?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM stud WHERE code = ?")) {
             preparedStatement.setInt(1, studentId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -152,7 +156,7 @@ public class StudentDao {
     private Connection getConnection() {
         try {
             Class.forName("org.postgresql.Driver");
-            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/student", "postgres", "");
+            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/java", "postgres", "12345");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("Error connecting to the database.", e);
         }
