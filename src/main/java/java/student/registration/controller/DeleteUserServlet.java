@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.student.registration.dao.UserDao;
+//import java.student.registration.model.User;
 /**
  * Servlet implementation class DeleteUserServlet
  */
